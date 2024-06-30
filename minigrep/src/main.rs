@@ -1,7 +1,9 @@
 use std::{env, process};
 use nimigrep::Config;
+use std::time::{Duration, Instant};
 
 fn main() {
+    let start = Instant::now();
     // let input_parameters: Vec<String> = env::args().collect();
     // change the parameter, from &[String] to Iterator
     let config = Config::build(env::args())
@@ -20,6 +22,9 @@ fn main() {
             process::exit(1);
         }
     }
+    let duration = start.elapsed();
+
+    println!("adapt time: {:?}", duration);
 
     // if let Err(e) = config.clone().run() {
     //     println!("oops: {e}");
