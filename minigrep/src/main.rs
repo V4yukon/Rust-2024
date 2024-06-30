@@ -2,9 +2,9 @@ use std::{env, process};
 use nimigrep::Config;
 
 fn main() {
-    let input_parameters: Vec<String> = env::args().collect();
-
-    let config = Config::build(&input_parameters)
+    // let input_parameters: Vec<String> = env::args().collect();
+    // change the parameter, from &[String] to Iterator
+    let config = Config::build(env::args())
         .unwrap_or_else(|err| { 
             eprintln!("Problem parsing arguments: {err}");
             process::exit(1);
@@ -14,7 +14,7 @@ fn main() {
     println!("command: {}\nfilename: {}", config.command, config.filename);
     println!("*********************\n\n");
     match config.run() {
-        Ok(()) => println!("\n\ngood job"),
+        Ok(()) => println!("\n\nGood Job!"),
         Err(e) => {
             eprintln!("{e}");
             process::exit(1);

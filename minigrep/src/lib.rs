@@ -18,13 +18,25 @@ impl Config {
     //     }
     // }
 
-    pub fn build(args: &[String]) -> Result<Self, &'static str> {
-        if args.len() < 3 {
-            return Err("parameters isn't enough");
-        }
-        let command = args[1].clone();
-        let filename = args[2].clone();
+    pub fn build(mut args: impl Iterator<Item = String> ) -> Result<Self, &'static str> {
+        // if args.len() < 3 {
+        //     return Err("parameters isn't enough");
+        // }
+        // let command = args[1].clone();
+        // let filename = args[2].clone();
 
+
+        /* use iterator to improve the build */
+        args.next();
+        let command = match args.next() {
+             Some(arg) => arg,
+             None => return Err("parameters isn't enough"),
+        };
+
+        let filename = match  args.next() {
+            Some(arg) => arg,
+            None => return Err("parameters isn't enough"),
+        };
         let ignorecase = env::var("IGNORE_CASE").is_ok();
         Ok(Config{command, filename, ignorecase})
     }
@@ -37,8 +49,13 @@ impl Config {
         } else {
             search(&self.command, &text)
         };
-        for line in result{
-            println!("{line}");
+        if result.is_empty() {
+            println!("Oops!There is no same char in the file");
+        } else {
+            println!("Well Done!It's this: \n");
+            for line in result{
+                println!("{line}");
+            }
         }
         Ok(())
 
@@ -46,16 +63,21 @@ impl Config {
 }
 
 pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str> {
-    let mut result = Vec::new();
-    for line in contents.lines() {
-        if line.contains(query){
-            result.push(line);
-        }
-    }
-    // result.push(|line| {
-    //     if 
-    // })
-    result
+    /*origin way */
+    // let mut result = Vec::new();
+    // for line in contents.lines() {
+    //     if line.contains(query){
+    //         result.push(line);
+    //     }
+    // }
+    // result
+
+    /* Iterator */
+    contents
+        .lines()
+        .filter(|line| line.contains(query) )
+        .collect()
+
     //let content: Vec<&str> = contents.split("\n").collect();
     // let mut result = Vec::new();
     // for item in &content {
@@ -71,15 +93,20 @@ pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str> {
 
 pub fn search_case_insensitive<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    // let contents = contents.to_lowercase();
-    let mut result = Vec::new();
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query){
-            result.push(line);
-        }
-    }
-    result
+    // // let contents = contents.to_lowercase();
+    // let mut result = Vec::new();
+    // for line in contents.lines() {
+    //     if line.to_lowercase().contains(&query){
+    //         result.push(line);
+    //     }
+    // }
+    // result
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query))
+        .collect()
 }
+
 
 #[cfg(test)]
 
