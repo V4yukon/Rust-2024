@@ -16,3 +16,8 @@
 
 
 written by  ***\*const T and \*mut T***
+
+
+# Difference between constants and  immutable static variables
+--- variables have fixed memory address,all referece point the same data, constants will copy the value  
+--- variables can mutable: unsafe{} 
