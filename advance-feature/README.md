@@ -13,3 +13,6 @@
 ..Aren’t guaranteed to point to valid memory  
 ..Are allowed to be null  
 ..Don’t implement any automatic cleanup  
+
+
+written by  ***\*const T and \*mut T***
