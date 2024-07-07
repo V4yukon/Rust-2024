@@ -2,10 +2,10 @@
 extern "C" {
     fn abs(input: i32) -> i32;
 }
-extern "python" {
-    def good():
-        print("hello, world")
-}
+// extern "python" {
+//     def good():
+//         print("hello, world")
+// }
 
 
 fn main() {
@@ -29,8 +29,8 @@ fn main() {
         println!("{}", *r2);
     }
 
-    unsafe {
-        println!{"I get a value from C language it's: {}", abs(90)};
-        good();
-    }
+    // unsafe {
+    //     println!{"I get a value from C language it's: {}", abs(90)};
+    //     good();
+    // }
 }
