@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b, #f06595);
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .sidebar {
+            width: 25%;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .sidebar ul li a:hover {
+            color: #ffd700;
+        }
+        .content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .content h1 {
+            margin-top: 0;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .card p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#introduction">介绍</a></li>
+                <li><a href="#features">功能</a></li>
+                <li><a href="#technologies">技术</a></li>
+                <li><a href="#setup">设置</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div id="introduction" class="card">
+                <h1>我的 Web 应用程序</h1>
+                <p>欢迎来到我的 Web 应用程序介绍页面！在这里你可以了解这个项目的背景、功能、使用的技术以及如何设置和运行它。</p>
+            </div>
+            <div id="features" class="card">
+                <h2>功能</h2>
+                <p>这个 Web 应用程序提供了以下功能：</p>
+                <ul>
+                    <li>用户注册和登录</li>
+                    <li>实时数据更新</li>
+                    <li>多语言支持</li>
+                    <li>响应式设计，支持各种设备</li>
+                </ul>
+            </div>
+            <div id="technologies" class="card">
+                <h2>使用的技术</h2>
+                <p>该项目使用了以下技术栈：</p>
+                <ul>
+                    <li>前端：HTML, CSS, JavaScript, React</li>
+                    <li>后端：Rust, Axum, SQLx</li>
+                    <li>数据库：PostgreSQL</li>
+                    <li>部署：Docker, Kubernetes</li>
+                </ul>
+            </div>
+            <div id="setup" class="card">
+                <h2>设置和运行</h2>
+                <p>以下是设置和运行该项目的步骤：</p>
+                <ol>
+                    <li>克隆仓库：<code>git clone https://github.com/your-repo</code></li>
+                    <li>安装依赖：<code>cargo build</code></li>
+                    <li>运行应用程序：<code>cargo run</code></li>
+                </ol>
+            </div>
+            <div id="contact" class="card">
+                <h2>联系</h2>
+                <p>如果你有任何问题或建议，请通过以下方式联系我：</p>
+                <ul>
+                    <li>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></li>
+                    <li>GitHub: <a href="https://github.com/your-username" target="_blank">your-username</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
