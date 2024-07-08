@@ -1,7 +1,7 @@
 # Some Concepts
 
 ## 1.type system
-
+---
 ### 1.1 Scalar Types
 <!-- **int**    
 **float**  
@@ -24,7 +24,9 @@
 **tuple** 
 
 ## 2.variables
-pattern  
+pattern 
+
+let && if let && while let  
 
 ## 3.loop
 ----if  
@@ -56,15 +58,34 @@ When the owner goes out of scope, the value will be dropped.
 **Reference Rules**  
 ***>At any given time, you can have either one mutable reference or any number of immutable references.***  
 ***>References must always be valid.***
-
+---
 ## 5.generic
-
+.generic in struct and enum 
+```rust
+stuct <T> People {
+    name: T,
+    id: T,
+} 
+```
+.generic in fn  
+```rust
+fn <T> get(s: T) -> T{}  
+fn <T, F> put(s: T) -> F
+where
+F: FnOnce
+{}
+```  
+.
+---
 ## 6.trait
-
+```rust
+  Box<dyn trait>
+```
+---
 ## 7.lifetime
-
+---
 ## 8.closure
-
+---
 ## 9.smart pointer
-
+---
 ## 10.about core && alloc && std crates
