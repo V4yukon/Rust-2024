@@ -10,8 +10,8 @@ async fn quick_dev() -> Result<()> {
     let req_login = hc.do_post(
         "/api/login",
         json!({
-            "username": "demo1",
-            "pwd": "lanmei1"
+            "username": "demo",
+            "pwd": "lanmei"
         })
     );
 

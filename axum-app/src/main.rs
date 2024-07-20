@@ -9,9 +9,11 @@ use axum::{Router, middleware};
 use axum::routing::get;
 use serde::Deserialize;
 use tower_http::services::ServeDir;
+use tower_cookies::CookieManagerLayer;
 
 mod error;
 mod web;
+mod rjwt;
 // use web::*;
 // use error::{Error, Result};
 
@@ -29,6 +31,7 @@ async fn main() {
         .merge(router_path())
         .merge(web::routes_login::routes())
         .layer(middleware::map_response(main_response_mapper))
+        .layer(CookieManagerLayer::new())
         .nest_service("/static", static_file);
 
     // let addr = SocketAddr::from(([127.0.0.1], 8080));
