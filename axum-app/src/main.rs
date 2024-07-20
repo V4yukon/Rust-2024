@@ -14,22 +14,25 @@ use tower_cookies::CookieManagerLayer;
 mod error;
 mod web;
 mod rjwt;
+mod model;
 // use web::*;
-// use error::{Error, Result};
-
+use crate::error::{Error, Result};
+use crate::model::ModelController;
 
 #[allow(unused)]
 
 
 #[tokio::main]
 
-async fn main() {
+async fn main() -> Result<()> {
+    let mc = ModelController::new().await?;
 
     let static_file = ServeDir::new("static");
     // println!("Hello world!");
     let router_all = Router::new()
         .merge(router_path())
         .merge(web::routes_login::routes())
+        .nest("/api", web::routes_tickets::routes(mc.clone()))
         .layer(middleware::map_response(main_response_mapper))
         .layer(CookieManagerLayer::new())
         .nest_service("/static", static_file);
@@ -42,6 +45,8 @@ async fn main() {
     axum::serve(addr, router_all)
         .await
         .unwrap();
+
+    Ok(())
 
 }
 
